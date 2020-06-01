@@ -134,10 +134,15 @@
             const selected = Array.from(children).filter((item) => {
               return this.isItemSelected(item.$el || item)
             })
-            
-            // If shift was held during mousedown the new selection is added to the current. Otherwise the new selection
-            // will be selected
-            this.selectedItems = this.concat ? uniqueArray(this.selectedItems.concat(selected)) : selected
+
+            if(selected.length == 0){
+              // block empty area select
+            }
+            else {
+              // If shift was held during mousedown the new selection is added to the current. Otherwise the new selection
+              // will be selected
+              this.selectedItems = this.concat ? uniqueArray(this.selectedItems.concat(selected)) : selected
+            }
           }
         }
       },
@@ -166,9 +171,8 @@
             // When selected item clicked, remove it.
             this.selectedItems.splice(itemIndex, 1)
           }
-          else if(!justClick && selectOnly && itemIndex > -1){
-            // Also, when only one selected item drag selected, remove it.
-            this.selectedItems.splice(itemIndex, 1)
+          else if(selected.length == 0){
+            // block empty area select
           }
           else {
             // If shift was held during mousedown the new selection is added to the current. Otherwise the new selection

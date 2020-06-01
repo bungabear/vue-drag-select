@@ -3,6 +3,16 @@
     alt="Screenshot">
 </p>
 
+
+# Forked from
+[vue-drag-select](https://github.com/stephan281094/vue-drag-select)
+
+changes :  
+* Prevent loose selection from empty area clicking or dragging.
+* Can select a item by click.
+* Can unselect a item by selected item click.
+
+
 # Vue Drag to Select Component
 A Vue component for drag selecting elements. Inspired by [react-drag-select](https://github.com/pablofierro/react-drag-select).
 
@@ -13,7 +23,7 @@ A Vue component for drag selecting elements. Inspired by [react-drag-select](htt
 * Add `vue-drag-select` to your project:
 
 ```bash
-$ yarn add vue-drag-select # or npm i --save vue-drag-select
+$ yarn add bungabear/vue-drag-select # or npm i --save bungabear/vue-drag-select
 ```
 
 * Import the component and add it to your template:
