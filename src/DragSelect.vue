@@ -113,7 +113,7 @@
           x: event.pageX,
           y: event.pageY
         }
-
+        
         // Start listening for mouse move and up events
         window.addEventListener('mousemove', this.onMouseMove)
         window.addEventListener('mouseup', this.onMouseUp)
@@ -134,7 +134,7 @@
             const selected = Array.from(children).filter((item) => {
               return this.isItemSelected(item.$el || item)
             })
-
+            
             // If shift was held during mousedown the new selection is added to the current. Otherwise the new selection
             // will be selected
             this.selectedItems = this.concat ? uniqueArray(this.selectedItems.concat(selected)) : selected
@@ -146,6 +146,36 @@
         window.removeEventListener('mousemove', this.onMouseMove)
         window.removeEventListener('mouseup', this.onMouseUp)
 
+        this.endPoint = {
+          x: event.pageX,
+          y: event.pageY
+        }
+
+        const children = this.$children.length
+          ? this.$children
+          : this.$el.children
+        if (children) {
+          const selected = Array.from(children).filter((item) => {
+            return this.isItemSelected(item.$el || item)
+          })
+
+          const justClick = this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y;
+          const selectOnly = selected.length == 1
+          const itemIndex = this.selectedItems.indexOf(selected[0])
+          if(justClick && itemIndex > -1){
+            // When selected item clicked, remove it.
+            this.selectedItems.splice(itemIndex, 1)
+          }
+          else if(!justClick && selectOnly && itemIndex > -1){
+            // Also, when only one selected item drag selected, remove it.
+            this.selectedItems.splice(itemIndex, 1)
+          }
+          else {
+            // If shift was held during mousedown the new selection is added to the current. Otherwise the new selection
+            // will be selected
+            this.selectedItems = this.concat ? uniqueArray(this.selectedItems.concat(selected)) : selected
+          }
+        }
         // Reset state
         this.mouseDown = false
         this.concat = false
