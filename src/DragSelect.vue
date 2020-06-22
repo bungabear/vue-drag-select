@@ -86,6 +86,9 @@
       }
     },
     methods: {
+      clearSelection(){
+        this.selectedItems = []
+      },
       getScroll () {
         // If we're on the server, default to 0,0
         if (typeof document === 'undefined') {

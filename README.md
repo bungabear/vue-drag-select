@@ -11,6 +11,7 @@ changes :
 * Prevent loose selection from empty area clicking or dragging.
 * Can select a item by click.
 * Can unselect a item by selected item click.
+* Can clear selection.
 
 
 # Vue Drag to Select Component
